@@ -7,25 +7,68 @@
 # explicando a função do diretório com suas próprias palavras.
 
 /proc
-  
+1    3   8          devices      iomem     mounts        swaps        vmstat
+10   32  9          device-tree  ioports   net           sys          zoneinfo
+100  4   buddyinfo  diskstats    irq       pagetypeinfo  sysvipc
+11   42  bus        driver       kallsyms  partitions    thread-self
+12   47  cgroups    execdomains  kmsg      sched_debug   timer_list
+13   5   cmdline    fb           loadavg   self          tty
+14   6   consoles   filesystems  locks     slabinfo      uptime
+15   7   cpuinfo    fs           meminfo   softirqs      version
+2    78  crypto     interrupts   misc      stat          vmallocinfo  
 
 /proc/cpuinfo
-  
+hart    : 0
+isa     : rv64acdfimsu
+mmu     : sv48
 
 /proc/meminfo
-  
+MemTotal:         186324 kB
+MemFree:          177352 kB
+MemAvailable:     176932 kB
+Buffers:               0 kB
+Cached:             3804 kB
+SwapCached:            0 kB
+Active:             3908 kB
+Inactive:           1164 kB
+Active(anon):       1268 kB
+Inactive(anon):        0 kB
+Active(file):       2640 kB
+Inactive(file):     1164 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:          1304 kB
+Mapped:             2840 kB
+Shmem:                 0 kB
+Slab:               3036 kB
+SReclaimable:        512 kB
+SUnreclaim:         2524 kB
+KernelStack:         160 kB
+PageTables:           68 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:       93160 kB
+Committed_AS:       2336 kB
+VmallocTotal:   67108863 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
 
 /proc/uptime
-  
+  314.80 310.29
 
 /bin
-
+2349
   
 /dev
-  
+  607
 
 /etc
-  
+  260
 
 
 # PARTE B — Questão de reflexão
@@ -33,4 +76,4 @@
 # e que rotinas de dispositivo traduziam comandos.
 # Em qual diretório do Linux você reconhece essa função?
 
-Resposta:
+Resposta:  /proc é o diretório que mostra informações do kernel sobre dispositivos, drivers e hardware, mostrando o controle do supervisor sobre I/O e a tradução de comandos.
