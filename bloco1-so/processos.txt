@@ -6,36 +6,45 @@
 # Cole abaixo a saída de cada comando e anote o que observou.
 
 echo $$
-  PID do shell: 
+  PID do shell: 47
 
 cat /proc/[PID]/status   (substitua [PID] pelo número real)
-  PID:
-  PPID (processo pai):
-  State:
+  PID:47
+  PPID (processo pai):1
+  State: S (sleeping)
 
 cat /proc/[PID]/stat (campos relevantes)
-  Campo 2 — nome do executável:
-  Campo 3 — estado:
-  Campos 14 e 15 — utime / stime:
+  Campo 2 — nome do executável:0022
+  Campo 3 — estado: S (sleeping)
+  Campos 14 e 15 — utime / stime:47 / 47
 
 ps aux (primeiras linhas)
-  [cole aqui]
-
+Pid:    1
+State:  S (sleeping)
+Time:  0:00
 
 # PARTE B — Processo filho
 # Cole a saída dos comandos e responda:
 
 sleep 5m &
-  PID do filho: 
+PID do filho: 94
 
 cat /proc/[FILHO]/status | grep -E "Pid|PPid|State"
-  [cole aqui]
+State:  S (sleeping)
+Pid:    94
+PPid:   47
+TracerPid:      0
 
 ps -o pid,ppid,stat,cmd (antes do kill)
-  [cole aqui]
+ PID  PPID STAT CMD
+   47     1 Ss   sh -l
+   94    47 S    sleep 5m
+  103    47 R+   ps -o pid,ppid,stat,cmd
 
 ps -o pid,ppid,stat,cmd (depois do kill)
-  [cole aqui]
+  PID  PPID STAT CMD
+   47     1 Ss   sh -l
+  104    47 R+   ps -o pid,ppid,stat,cmd
 
 
 # PARTE C — Questões de síntese
@@ -46,7 +55,7 @@ ps -o pid,ppid,stat,cmd (depois do kill)
 #    criados no Linux?
 
 Resposta 1:
-
+Isso mostra que os processos no Linux funcionam como uma “família”, todo processo tem um pai e pode criar filhos. Logo, eles formam tipo uma "árvore", começando do processo inicial.
 
 # 2. O arquivo /proc/<PID>/status mostra o campo State com uma letra
 #    (S, R, Z...). Depois de executar kill $FILHO e rodar ps novamente,
@@ -54,3 +63,4 @@ Resposta 1:
 #    sobre a vida de um processo?
 
 Resposta 2:
+Depois do kill, o processo filho foi excluido. Isso mostra que processos têm um ciclo: começam, rodam ou esperam e terminam.
