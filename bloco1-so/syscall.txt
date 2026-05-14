@@ -14,21 +14,28 @@ Saída filtrada:
 #   O que está sendo escrito:
 #   Valor de retorno:
 
-fd:
-conteúdo:
-retorno:
+fd: 1
+conteúdo: "ola\n"
+retorno: 4
 
 
 # PARTE B — Programa C com write() direto
 
 # Cole aqui o código de syscall_direto.c que você escreveu:
 
-[código-fonte]
+#include <unistd.h>
+#include <string.h>
+
+int main() {
+    const char *mensagem = "ola\n";
+    write(1, mensagem, strlen(mensagem));
+    return 0;
+}
 
 
 # Cole aqui a linha write(...) da saída de strace -o strace.txt ./syscall_direto:
 
-[saída do strace]
+write(1, "ola\n", 4) = 4
 
 
 # PARTE C — Questões de síntese
@@ -38,7 +45,7 @@ retorno:
 #    de usuário consegue fazer I/O sem executar instruções privilegiadas diretamente.
 
 Resposta 1:
-
+O programa chama o kernel usando syscalls. O kernel, que é privilegiado, executa o I/O e volta o resultado para o programa.
 
 # 2. Na apresentação sobre a genealogia do software, vimos que os programas de canal
 #    eram responsáveis por intermediar a transferência de dados entre a memória e os
@@ -46,3 +53,4 @@ Resposta 1:
 #    operacional moderno herda esse papel? 
 
 Resposta 2:
+O kernel e os drivers intervêm na memória e nos dispositivos de I/O.
